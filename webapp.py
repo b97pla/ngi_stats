@@ -14,9 +14,14 @@ class StatusHandler(tornado.web.RequestHandler):
         self.render('throughput.html', title=endpoint)
 
 
+class HelloHandler(tornado.web.RequestHandler):
+    def get(self):
+        self.write("Hello!")
+
 def make_app():
     return tornado.web.Application([
-        (r"/status/(analysis|delivery)", StatusHandler),],
+        (r"/status/(analysis|delivery)", StatusHandler),
+        (r"/hello/", HelloHandler),],
         template_path='templates',
         static_path='.')
 

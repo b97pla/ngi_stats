@@ -65,3 +65,5 @@ data/*.pandas
 css/nv.d3.min.css
 javascript/nv.d3.min.js
 
+# Vagrant
+.vagrant/
