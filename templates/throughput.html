@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+        <link href="{{ static_url('css/nv.d3.min.css') }}" rel="stylesheet">
+        <script src="{{ static_url('javascript/nv.d3.min.js') }}"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <style type="text/css">
+            body {
+                padding-top: 43px;
+            }
+
+            .statement_para {
+                font-size: 14pt;
+                line-height: 120%;
+                width: 60%;
+                text-align: justify;
+                text-justify: distribute;
+                margin: 10px auto;
+                margin-bottom: 30px;
+            }
+
+            .row {
+                margin: 1%;
+            }
+
+            article {
+                padding: 0 1%;
+                font-size: 18px;
+                line-height: 1.5em;
+            }
+
+            body > .container {
+                width: 941px;
+            }
+
+            @media(min-width: 1200px){
+                body > .container {
+                    width: 1171px;
+                }
+            }
+
+            @media (max-width: 979px) and (min-width: 768px) {
+                body > .container {
+                    width: 725px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container with-3d-shadow with-transitions">
+            <div class="span9">
+                <div id='{{ title }}'>
+                    <svg style='height:500px'> </svg>
+                    <script>{% module Template("{}.js".format(title), title=title) %}</script>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

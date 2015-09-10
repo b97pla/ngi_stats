@@ -55,3 +55,12 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# PyCharm
+.idea/
+
+# script
+data/*
+css/nv.d3.min.css
+javascript/nv.d3.min.js
+
