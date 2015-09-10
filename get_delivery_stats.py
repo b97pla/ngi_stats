@@ -64,7 +64,6 @@ def get_stats():
         return 'NGI-S'
 
     picklefile = os.path.join('data', '{}_samples.pandas'.format(datetime.date.today().strftime("%Y-%m-%d")))
-    return None
     samples = []
     if not os.path.exists(picklefile):
         session = requests.Session()

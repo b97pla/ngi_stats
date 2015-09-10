@@ -2,7 +2,7 @@ FROM centos:6
 MAINTAINER Pontus Larsson <b97pla@gmail.com>
 RUN yum -y update; \
     yum clean all;
-RUN yum install -y tar wget bzip2;
+RUN yum install -y tar wget bzip2 git;
 
 # set up a non-root user and run the rest of the commands as that user
 RUN adduser tornadouser; \
