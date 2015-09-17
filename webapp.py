@@ -1,7 +1,9 @@
+import os
 import tornado.ioloop
 import tornado.web
 
 from get_delivery_stats import get_stats
+from get_size_log import SizeLogParser
 
 
 class StatusHandler(tornado.web.RequestHandler):
@@ -14,14 +16,26 @@ class StatusHandler(tornado.web.RequestHandler):
         self.render('throughput.html', title=endpoint)
 
 
-class HelloHandler(tornado.web.RequestHandler):
+class ProjectSizeHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello!")
+        endpoint = 'projects'
+        try:
+            SizeLogParser(os.path.join('data', 'project_sizes.txt'))
+        except Exception as e:
+            self.write(e)
+            raise
+        self.render('throughput.html', title=endpoint)
+
+
+class HelloHandler(tornado.web.RequestHandler):
+    def get(self, endpoint):
+        self.write("Hello {}!".format(endpoint))
 
 def make_app():
     return tornado.web.Application([
-        (r"/status/(analysis|delivery)", StatusHandler),
-        (r"/hello/", HelloHandler),],
+        (r"/status/(analysis|delivery|sequenced)", StatusHandler),
+        (r"/projects/sizes", ProjectSizeHandler),
+        (r"/hello/(.*)", HelloHandler),],
         template_path='templates',
         static_path='.')
 

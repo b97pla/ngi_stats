@@ -1,19 +1,20 @@
 
-  d3.json("{{ static_url('data/analyzed_samples.json') }}", function(data) {
+  d3.json("{{ static_url('data/sequenced_samples.json') }}", function(data) {
     nv.addGraph(function() {
       var chart = nv.models.stackedAreaChart()
                     .margin({right: 100})
                     .x(function(d) { return d[0] })   //We can modify the data accessor functions...
                     .y(function(d) { return d[1] })   //...in case your data is formatted differently.
-                    .useInteractiveGuideline(true)    //Tooltips which show all data points. Very nice!
                     .rightAlignYAxis(false)      //Let's move the y-axis to the right side.
 //                    .transitionDuration(500)
                     .showControls(true)       //Allow user to choose 'Stacked', 'Stream', 'Expanded' mode.
-                    .clipEdge(true);
+                    .clipEdge(true)
+                    .useInteractiveGuideline(true);    //Tooltips which show all data points. Very nice!
+
 
       //Format x-axis labels with custom function.
       chart.xAxis
-          .tickFormat(function(d) { 
+          .tickFormat(function(d) {
             return d3.time.format('%Y-%m-%d')(new Date(d*1000))
       });
 
@@ -29,4 +30,3 @@
       return chart;
     });
   })
-  

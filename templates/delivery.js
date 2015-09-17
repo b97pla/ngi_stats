@@ -15,7 +15,7 @@
       //Format x-axis labels with custom function.
       chart.xAxis
           .tickFormat(function(d) { 
-            return d3.time.format('%Y-%m-%d')(new Date(d))
+            return d3.time.format('%Y-%m-%d')(new Date(d*1000))
       });
 
       chart.yAxis
